@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        const App = () => {
+            let [number, setNumber] = React.useState(0);
+                function minusHandle(){
+                    if(number <= 0){
+                        setNumber('done!');
+                    } else {
+                        setNumber(number - 1);
+                    }
+                }
+
+                function plusHandle(){
+                    if (number >= 10){ 
+                        setNumber('done!');
+                    } else {
+                        setNumber(number + 1);
+                    }
+                }
+
+                function resetHandle(){
+                    setNumber(0);
+                }
+
+                return  <>
+                            <button onClick={minusHandle} disabled={number == 'done!'}>-</button>
+                            <h1>{number}</h1>
+                            <button onClick={plusHandle} disabled={number == 'done!'}>+</button>
+                            <button onClick={resetHandle}>reset</button>
+                        </>
+        }
+
+        root.render(
+            <App/>
+        );
+
+        </script>
+    </body>
+</html>

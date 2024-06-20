@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        // Component 
+        function Header(){
+            return (<h1> Belajar React Bareng Pak Dika 🚀 </h1>);
+        }
+
+        function Nav(){
+            return (
+                <>
+                    <nav>
+                        <p>Nav</p>
+                    </nav>
+                </>
+            )
+        }
+
+        
+        // props
+        function CallName({name}){
+            return ( <p> Hello Pak Dika Nama Saya {name ? name : 'zikri' } </p> );
+        }
+
+        function CallNameArray(){
+            const names = ['zikri','arya','reyza','nike']
+            return (
+                <>
+                    <p>-----------------------------------</p>
+                    <p>using array</p>
+                    {names.map((name) => (
+                        <li key={name}> {name} </li>
+                    ))}
+                </>
+            );
+        }
+
+        // panggil semua
+        function HomePage(){
+            const [likes, setLikes] = React.useState(0);
+
+            function handleClick() {
+                setLikes(likes + 1);
+            }
+
+            return (
+                <>
+                    <Nav/>
+                    <Header/>
+                    <CallName />
+                    <CallName name="arya"/>
+                    <CallName name="reyza"/>
+                    <CallName name="nike"/>
+                    <CallNameArray />
+                    <button onClick={handleClick}> likes = {likes} </button>
+                </>
+            )
+        }
+
+        root.render(
+            <HomePage/>
+        );
+
+        </script>
+    </body>
+</html>
